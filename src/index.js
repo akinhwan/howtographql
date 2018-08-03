@@ -32,5 +32,12 @@ Link: {
 const server = new GraphQLServer({
   typeDefs: './src/schema.graphql',
   resolvers,
+  context: req => ({
+      ...req,
+      db: new WebGLShaderPrecisionFormat({
+          typeDefs: 'src/generated/prisma.graphql',
+          
+      })
+  })
 })
 server.start(() => console.log(`Server is running on http://localhost:4000`))
